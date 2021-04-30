@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface OrderRepository extends JpaRepository<Order,Integer> {
+public interface OrderRepository extends JpaRepository<Order,Long> {
 
     @Query("SELECT name FROM orders WHERE idUser = id")
     public List<Order> findByUserId(Long id);

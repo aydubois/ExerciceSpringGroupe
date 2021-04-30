@@ -46,7 +46,7 @@ public class OrderController {
     }
 
     @GetMapping(path = "/{id}")
-    public Order getOrder(@PathVariable int id) throws NotFoundException {
+    public Order getOrder(@PathVariable Long id) throws NotFoundException {
         return orderService.findOrderById(id);
     }
 
@@ -57,7 +57,7 @@ public class OrderController {
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<String> deleteOrder(@PathVariable int id) throws NotFoundException {
+    public ResponseEntity<String> deleteOrder(@PathVariable Long id) throws NotFoundException {
         Order order = orderService.findOrderById(id);
         orderService.removeOrder(order);
         return ResponseEntity.status(HttpStatus.OK).body("Delete");
