@@ -30,6 +30,14 @@ public class UserService {
         return repository.findById(id).orElseThrow(()->new NotFoundException("Cet utilisateur n'existe pas"));
     }
 
+    public User login(String name) {
+        try {
+            return repository.findByName(name).get(0);
+        }catch (Exception e){
+            throw new NotFoundException("Cet utilisateur n'existe pas");
+        }
+    }
+
     public User create(User user) {
         if(user.getName() == null || user.getName().isEmpty()){
             throw  new BadRequestException("Input values can't be empty");
@@ -37,10 +45,11 @@ public class UserService {
         User newUser = new User(user.getName());
         Department[] departments = getDepartmentsByCode(user.getCode());
 
-        if(departments.length > 0){
+        if(departments!= null && departments.length > 0){
             newUser.setDepartment(departments[0].getNom());
         }
         newUser.setCode(user.getCode());
+        repository.save(newUser);
         return newUser;
     }
 

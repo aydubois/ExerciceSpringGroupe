@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cliens</title>
+
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+        table{
+            border-collapse: collapse;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}"/>
+
+</head>
+<body>
+    <h1>S'inscrir</h1>
+    <hr/>
+    <form class="card add" action="#" th:action="@{/view}" th:method="POST" th:object="${newUser}">
+        <input id="name" type="text" placeholder="Nom" th:field="*{name}"/>
+        <input id="code" type="text" placeholder="Code de département" th:field="*{code}"/>
+        <input type="submit" value="Ajouter" />
+    </form>
+</body>

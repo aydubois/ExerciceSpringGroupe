@@ -23,6 +23,9 @@ public class User {
     @Column
     private String code;
 
+    @Column
+    private boolean isAdmin;
+
     public User(String name){
         this.name = name;
     }

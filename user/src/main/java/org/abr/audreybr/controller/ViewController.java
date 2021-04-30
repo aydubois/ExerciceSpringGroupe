@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class ViewController {
         List<User> users = service.getAll();
         model.addAttribute("users",users);
         model.addAttribute("newUser",new User());
-        return "view";
+        return "register";
     }
 
     @DeleteMapping(path = "{id}")
@@ -31,10 +32,20 @@ public class ViewController {
     }
 
     @PostMapping()
-    public String add(@ModelAttribute User user) {
+    public String add(@ModelAttribute User user, Model model) {
         service.create(user);
-        return "redirect:/view";
+        model.addAttribute("newUser", new User());
+        return "login";
     }
+
+    @PostMapping(path = "login")
+    public RedirectView login(@ModelAttribute User user) {
+        User authUser = service.login(user.getName());
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("http://localhost:8081/index/"+authUser.getId());
+        return redirectView;
+    }
+
     @PutMapping(path = "{id}")
     public String edit(@PathVariable long id, @ModelAttribute User user) {
         service.editUser(id,user);
