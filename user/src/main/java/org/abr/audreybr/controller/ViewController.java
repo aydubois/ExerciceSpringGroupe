@@ -1,6 +1,5 @@
 package org.abr.audreybr.controller;
 
-import org.abr.audreybr.dto.UserDTO;
 import org.abr.audreybr.entity.User;
 import org.abr.audreybr.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class ViewController {
     public String index(Model model){
         List<User> users = service.getAll();
         model.addAttribute("users",users);
-        model.addAttribute("user",new User());
+        model.addAttribute("newUser",new User());
         return "view";
     }
 

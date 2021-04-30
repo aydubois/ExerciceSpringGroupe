@@ -75,7 +75,7 @@ public class UserService {
         }
         if(!request.isEmpty()){
             RestTemplate restTemplate = new RestTemplate();
-            String baseUrl = "https://geo.api.gouv.fr/depatements?";
+            String baseUrl = "https://geo.api.gouv.fr/departements?";
             ResponseEntity<Department[]> response = restTemplate.getForEntity(baseUrl+request+"&fields=nom", Department[].class);
             return response.getBody();
         }else {
