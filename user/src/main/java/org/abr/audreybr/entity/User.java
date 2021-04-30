@@ -26,6 +26,13 @@ public class User {
     @Column
     private boolean isAdmin;
 
+    public User(String name, String department, String code, boolean isAdmin) {
+        this.name = name;
+        this.department = department;
+        this.code = code;
+        this.isAdmin = isAdmin;
+    }
+
     public User(String name){
         this.name = name;
     }
