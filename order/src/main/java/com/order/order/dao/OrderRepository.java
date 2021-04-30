@@ -1,15 +1,14 @@
 package com.order.order.dao;
 
-import com.order.order.entity.Item;
 import com.order.order.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface OrderRepository extends JpaRepository<Order,Long> {
 
-    @Query("SELECT name FROM orders WHERE idUser = id")
-    public List<Order> findByUserId(Long id);
+    public List<Order> findByIdUser(Long id);
 
 }

@@ -125,6 +125,6 @@ public class OrderService {
     }
 
     public List<Order> findOrdersByUserId(Long userId){
-        return orderRepository.findByUserId(userId);
+        return orderRepository.findByIdUser(userId);
     }
 }
