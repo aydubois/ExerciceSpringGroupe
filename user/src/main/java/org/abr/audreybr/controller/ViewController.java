@@ -39,12 +39,14 @@ public class ViewController {
     }
 
     @PostMapping(path = "login")
-    public RedirectView login(@ModelAttribute User user) {
+    public String login(@ModelAttribute User user, Model model) {
         User authUser = service.login(user.getName());
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("http://localhost:8081/index/"+authUser.getId());
-        return redirectView;
+        //RedirectView redirectView = new RedirectView();
+        //redirectView.setUrl("http://localhost:8081/index/"+authUser.getId());
+        model.addAttribute("user", authUser);
+        return "profile";
     }
+
     @GetMapping(path = "login")
     public String loginView(@ModelAttribute User user,Model model) {
         model.addAttribute("newUser", new User());
@@ -61,7 +63,7 @@ public class ViewController {
     public String show(@PathVariable("id") int id, Model model){
         User user = service.getUser(id);
         model.addAttribute("user",user);
-        return "view-by-id";
+        return "profile";
     }
 
 }

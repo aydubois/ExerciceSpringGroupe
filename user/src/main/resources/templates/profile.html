@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${user.name}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}"/>
+</head>
+<body>
+    <h1 th:text="${user.name}"></h1>
+    <ul class="card list">
+        <li><b>Reference: </b><span th:utext="${user.id}"></span></li>
+        <li><b>Name: </b><span th:utext="${user.name}"></span></li>
+        <li><b>Département: </b><span th:utext="${user.department}"></span></li>
+        <li th:if="${user.isAdmin}"><b>Admin: </b><span th:utext="${user.isAdmin}"></span></li>
+    </ul>
+
+    <br/>
+
+    <div th:if="${user.isAdmin()}">
+        <p><strong>Items :</strong>  </p><a href="http://localhost:8083/index">créer des items</a>
+    </div>
+
+    <div th:if="${user.isAdmin()}">
+        <p><strong>Customers :</strong>  </p><a href="http://localhost:8080/view">customers</a>
+    </div>
+
+    <div>
+        <p><strong>Commandes :</strong>  </p><a th:href="@{http://localhost:8082/index/{id}(id=${user.id})}">créer des items</a>
+    </div>
+
+    <br/>
+
+    <form class="card add" action="#" th:action="@{/view/{id}(id=${user.id})}" th:method="put" th:object="${user}">
+        <input id="name" type="text" placeholder="Nom" th:field="*{name}"/>
+        <input id="code" type="text" placeholder="Code de département" th:field="*{code}"/>
+        <input type="submit" value="modifier" />
+    </form>
+</body>
