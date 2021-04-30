@@ -31,7 +31,7 @@ public class ViewController {
     }
 
     @GetMapping(path ="/show/{id}")
-    public String show(Model model, @PathVariable int id) {
+    public String show(Model model, @PathVariable Long id) {
         model.addAttribute("order", orderService.findOrderById(id));
         return "view-by-id";
     }
@@ -49,7 +49,7 @@ public class ViewController {
     }
 
     @DeleteMapping(path = "/delete/{id}")
-    public String delete(@PathVariable int id) throws NotFoundException {
+    public String delete(@PathVariable Long id) throws NotFoundException {
         Order order = orderService.findOrderById(id);
         orderService.removeOrder(order);
         return "redirect:/index";

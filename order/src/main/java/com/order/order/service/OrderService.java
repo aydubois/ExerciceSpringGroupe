@@ -45,7 +45,7 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public Order findOrderById(int id) throws NotFoundException {
+    public Order findOrderById(Long id) throws NotFoundException {
         return orderRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("ID" + id + " doesn't exist"));
     }
