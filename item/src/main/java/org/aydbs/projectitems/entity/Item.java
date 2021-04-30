@@ -19,6 +19,8 @@ public class Item {
 
     private @Column String regionCode;
 
+    private @Column Long orderId;
+
     public Item(String name, String regionCode, String region){
         this.name = name;
         this.regionCode = regionCode;

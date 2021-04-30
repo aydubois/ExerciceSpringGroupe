@@ -36,7 +36,14 @@ public class ItemController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
-
+    @GetMapping(path = "/order/{id}")
+    public ResponseEntity<List<Item>> getByOrderId(@PathVariable("id") Long idOrder) {
+        try {
+            return itemService.getByOrderId(idOrder);
+        }catch (ItemNotFoundException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
 
     @PostMapping
     public ResponseEntity<Item> add(@RequestBody ItemDTO item) {

@@ -22,6 +22,7 @@ public class OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
+    private List<Long> idItems = new ArrayList<>();
 
     public void addOrder(Order order) {
 
@@ -114,6 +115,13 @@ public class OrderService {
         } else {
            return null;
         }
+    }
+
+    public Item[] findItemsByOrderId(Long orderId) throws NotFoundException{
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Item[]> response
+                = restTemplate.getForEntity("http://localhost:8083/order/"+orderId, Item[].class);
+        return response.getBody();
     }
 
     public List<Order> findOrdersByUserId(Long userId){

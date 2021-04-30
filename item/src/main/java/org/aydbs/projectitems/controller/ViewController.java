@@ -25,6 +25,13 @@ public class ViewController {
         return "allItems";
     }
     @GetMapping(path = "/index/{id}")
+    public String indexByOrder( Model model, @PathVariable Long id){
+        model.addAttribute("regions", itemService.findAllRegions());
+        model.addAttribute("items", itemService.getByOrderId(id).getBody());
+        model.addAttribute("item", new ItemDTO());
+        return "allItems";
+    }
+    @GetMapping(path = "/item/{id}")
     public String viewItem( Model model, @PathVariable Long id){
         model.addAttribute("regions", itemService.findAllRegions());
         model.addAttribute("item", itemService.get(id).getBody());
@@ -39,7 +46,7 @@ public class ViewController {
     @PatchMapping(path = "/patch/{id}")
     public String patch(@ModelAttribute Item item, @PathVariable Long id){
         itemService.patchItem(item, id);
-        return "redirect:/index/{id}";
+        return "redirect:/item/{id}";
     }
 
     @PostMapping(path="/add")

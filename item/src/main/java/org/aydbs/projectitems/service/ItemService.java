@@ -34,6 +34,11 @@ public class ItemService {
         return ResponseEntity.status(HttpStatus.OK).body(item);
     }
 
+    public ResponseEntity<List<Item>> getByOrderId(Long id) throws ItemNotFoundException {
+        List<Item> items = itemRepository.findByOrderId(id);
+        return ResponseEntity.status(HttpStatus.OK).body(items);
+    }
+
     public ResponseEntity<Item> add(ItemDTO item) throws ItemNotFoundException{
         if(item == null){
             throw new ItemNotFoundException(null);
