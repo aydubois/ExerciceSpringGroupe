@@ -15,8 +15,6 @@ import java.util.List;
 
 @Service
 public class OrderService {
-
-    private List<Long> idItems = new ArrayList<>();
     
     @Autowired
     private RestTemplate restTemplate;
@@ -119,5 +117,16 @@ public class OrderService {
 
     public List<Order> findOrdersByUserId(Long userId){
         return orderRepository.findByUserId(userId);
+    }
+
+    public Object getItems(int id) {
+//        ResponseEntity<Item[]> response
+//                = restTemplate.getForEntity("http://localhost:8083/", Item[].class);
+//        if(response.getBody() != null && response.getBody().length > 0) {
+//            return response.getBody();
+//        } else {
+//            throw new NotFoundException("No items for this Order");
+//        }
+        return null;
     }
 }

@@ -28,6 +28,11 @@
                         <button type="submit">SUPPRIMER</button>
                     </form>
                 </td>
+                <td>
+                    <form action="#" th:action="@{http://localhost:8083/showItems/} + ${{order.id}}" th:method="get">
+                        <button type="submit">Items</button>
+                    </form>
+                </td>
             </tr>
         </table>
     </div>

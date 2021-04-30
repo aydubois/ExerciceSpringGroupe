@@ -46,4 +46,10 @@ public class ViewController {
         orderService.removeOrder(order);
         return "redirect:/index";
     }
+
+    @GetMapping("showItems/{id}")
+    public String showItems(@PathVariable int id, Model model) throws NotFoundException {
+        model.addAttribute("items",orderService.getItems(id));
+        return "itemsList";
+    }
 }
