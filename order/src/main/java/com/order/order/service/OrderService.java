@@ -1,6 +1,7 @@
 package com.order.order.service;
 
 import com.order.order.NotFoundException;
+import com.order.order.dao.OrderRepository;
 import com.order.order.entity.City;
 import com.order.order.entity.Order;
 import com.order.order.entity.Search;
@@ -14,18 +15,16 @@ import java.util.List;
 
 @Service
 public class OrderService {
-    private List<Order> orders = new ArrayList<>();
+
     private List<Long> idItems = new ArrayList<>();
     
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private OrderRepository orderRepository;
+
     public void addOrder(Order order) {
-        if(orders.size() > 0) {
-            order.setId(orders.get(orders.size() - 1).getId() + 1);
-        } else {
-            order.setId(1);
-        }
 
         City[] cities = findCityNames(order.getLattitude(), order.getLongitude());
         if(cities != null) {
@@ -35,21 +34,20 @@ public class OrderService {
             order.setLongitude(9999);
         }
 
-        orders.add(order);
+        orderRepository.save(order);
     }
 
     public void removeOrder(Order order) {
-        orders.remove(order);
+        orderRepository.deleteById(order.getId());
     }
 
     public List<Order> getOrders() {
-        return orders;
+
+        return orderRepository.findAll();
     }
 
     public Order findOrderById(int id) throws NotFoundException {
-        return orders.stream()
-                .filter(order -> order.getId() == id)
-                .findFirst()
+        return orderRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("ID" + id + " doesn't exist"));
     }
 
@@ -67,7 +65,7 @@ public class OrderService {
         if(cityLong != null) {
             searchBuilder.cityLong(cityLong);
         }
-        return searchBuilder.build().result(orders);
+        return searchBuilder.build().result(orderRepository.findAll());
     }
 
 
@@ -117,5 +115,9 @@ public class OrderService {
         } else {
            return null;
         }
+    }
+
+    public List<Order> findOrdersByUserId(Long userId){
+        return orderRepository.findByUserId(userId);
     }
 }

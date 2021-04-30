@@ -1,12 +1,29 @@
 package com.order.order.entity;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Data
+@Entity(name = "Order")
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column
     private String name;
+
+    @Column
     private String city;
     private int lattitude = 9999;
     private int longitude = 9999;
+
+    @Column
     private Long idCustomer;
+
+    @Column
+    private Long idUser;
 
     public Order() {}
     public Order(String name) {
@@ -24,51 +41,4 @@ public class Order {
         this.longitude = longitude;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public int getLattitude() {
-        return lattitude;
-    }
-
-    public void setLattitude(int lattitude) {
-        this.lattitude = lattitude;
-    }
-
-    public int getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(int longitude) {
-        this.longitude = longitude;
-    }
-
-    public Long getIdCustomer() {
-        return idCustomer;
-    }
-
-    public void setIdCustomer(Long idCustomer) {
-        this.idCustomer = idCustomer;
-    }
 }
