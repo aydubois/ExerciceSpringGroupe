@@ -1,6 +1,6 @@
 package com.alik.alik.service;
 
-import com.alik.alik.BadRequestException;
+import com.alik.alik.exception.BadRequestException;
 import com.alik.alik.dao.CustomerRepository;
 import com.alik.alik.entity.City;
 import com.alik.alik.entity.Customer;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.alik.alik.NotFoundException;
+import com.alik.alik.exception.NotFoundException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
