@@ -2,7 +2,7 @@
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Cliens</title>
+    <title>Clients</title>
 
     <style>
         table, th, td {
@@ -16,7 +16,7 @@
 
 </head>
 <body>
-    <h1>S'inscrir</h1>
+    <h1>S'inscrire</h1>
     <hr/>
     <form class="card add" action="#" th:action="@{/view}" th:method="POST" th:object="${newUser}">
         <input id="name" type="text" placeholder="Nom" th:field="*{name}"/>

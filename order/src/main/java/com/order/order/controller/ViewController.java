@@ -6,6 +6,7 @@ import com.order.order.service.OrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class ViewController {
@@ -22,8 +23,15 @@ public class ViewController {
         return "index";
     }
 
+    @GetMapping("/index/{id}")
+    public String indexById(Model model,@PathVariable long id) {
+        model.addAttribute("orders", orderService.findOrdersByUserId(id));
+        model.addAttribute("order", new Order());
+        return "index";
+    }
+
     @GetMapping(path ="/show/{id}")
-    public String show(Model model, @PathVariable int id) {
+    public String show(Model model, @PathVariable Long id) {
         model.addAttribute("order", orderService.findOrderById(id));
         return "view-by-id";
     }
@@ -41,15 +49,16 @@ public class ViewController {
     }
 
     @DeleteMapping(path = "/delete/{id}")
-    public String delete(@PathVariable int id) throws NotFoundException {
+    public String delete(@PathVariable Long id) throws NotFoundException {
         Order order = orderService.findOrderById(id);
         orderService.removeOrder(order);
         return "redirect:/index";
     }
 
-    @GetMapping("showItems/{id}")
-    public String showItems(@PathVariable int id, Model model) throws NotFoundException {
-        model.addAttribute("items",orderService.getItems(id));
-        return "itemsList";
+    @RequestMapping(path = "/showItems/{id}")
+    public RedirectView showItems(@PathVariable int id, Model model) throws NotFoundException{
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("http://localhost:8083/index/"+id);
+        return redirectView;
     }
 }
