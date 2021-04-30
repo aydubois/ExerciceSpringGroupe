@@ -3,7 +3,6 @@ package com.order.order.controller;
 import com.order.order.NotFoundException;
 import com.order.order.entity.Order;
 import com.order.order.service.OrderService;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +25,18 @@ public class ViewController {
     @GetMapping(path ="/show/{id}")
     public String show(Model model, @PathVariable int id) {
         model.addAttribute("order", orderService.findOrderById(id));
-        return "show";
+        return "view-by-id";
     }
 
-    @PostMapping(path ="/create", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String create(Order order) {
-        orderService.addOrder(order);
+    @GetMapping("/addOrder")
+    public String showAddOrder(Model model){
+        model.addAttribute("Order",new Order());
+        return "addOrder";
+    }
+
+    @PostMapping("create")
+    public String create(Model model, @ModelAttribute("Order") Order newOrder) {
+        orderService.addOrder(newOrder);
         return "redirect:/index";
     }
 

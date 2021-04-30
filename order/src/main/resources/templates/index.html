@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+</head>
+<body>
+    <h4>ESPACE DE GESTION DES COMMANDES</h4>
+    <a href="http://localhost:8081/addOrder">Ajouter</a>
+    <br/><br/>
+    <div>
+        <table border="1">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>IdCustomer</th>
+                <th>IdUser</th>
+            </tr>
+            <tr th:each ="order : ${orders}">
+                <td th:utext="${order.id}">...</td>
+                <td th:utext="${order.name}">...</td>
+                <td th:utext="${order.city}">...</td>
+                <td th:utext="${order.idCustomer}">...</td>
+                <td th:utext="${order.idUser}">...</td>
+                <td>
+                    <form action="#" th:action="@{http://localhost:8081/delete/} + ${{order.id}}" th:method="delete">
+                        <button type="submit">SUPPRIMER</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

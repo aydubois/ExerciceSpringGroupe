@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajout Commande</title>
+</head>
+<body>
+    <form th:action="@{/create}"
+          th:object="${Order}" method="POST">
+        <ul>
+            <li>
+                Name:
+                <input type="text" th:field="*{name}" />
+                <br/>
+            </li>
+            <li>
+                City:
+                <input type="text" th:field="*{city}" />
+                <br/>
+            </li>
+            <li>
+                IdCustomer:
+                <input type="text" th:field="*{idCustomer}" />
+                <br/>
+            </li>
+            <li>
+                IdUser:
+                <input type="text" th:field="*{idUser}" />
+                <br/>
+            </li>
+            <input type="submit" value="ajouter" />
+        </ul>
+    </form>
+
+<br/>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Commande</title>
+</head>
+<body>
+    Id:
+    <td th:utext="${order.id}">...</td>
+    <br/><br/>
+    Name:
+    <td th:utext="${order.name}">...</td>
+    <br/><br/>
+    City:
+    <td th:utext="${order.city}">...</td>
+    <br/><br/>
+    Customer
+    <td th:utext="${order.idCustomer}">...</td>
+    <br/><br/>
+    User
+    <td th:utext="${order.idUser}">...</td>
+</body>
+</html>
