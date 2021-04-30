@@ -29,14 +29,31 @@ public class ViewController {
         model.addAttribute("regions", itemService.findAllRegions());
         model.addAttribute("items", itemService.getByOrderId(id).getBody());
         model.addAttribute("item", new ItemDTO());
+        model.addAttribute("idOrder",id );
+
         return "allItems";
     }
+    @GetMapping(path = "/item/{id}/{idOrder}")
+    public String viewItemWithOrder( Model model, @PathVariable Long id, @PathVariable Long idOrder){
+        model.addAttribute("regions", itemService.findAllRegions());
+        model.addAttribute("item", itemService.get(id).getBody());
+        model.addAttribute("idOrder",idOrder );
+
+        return "oneItem";
+    }
+
     @GetMapping(path = "/item/{id}")
     public String viewItem( Model model, @PathVariable Long id){
         model.addAttribute("regions", itemService.findAllRegions());
         model.addAttribute("item", itemService.get(id).getBody());
         return "oneItem";
     }
+    @RequestMapping(path = "/delete/{id}/{idOrder}")
+    public String deleteWithOrder (@PathVariable Long id, @PathVariable Long idOrder){
+        itemService.delete(id);
+        return "redirect:/index/"+idOrder;
+    }
+
     @RequestMapping(path = "/delete/{id}")
     public String delete(@PathVariable Long id){
         itemService.delete(id);
@@ -48,12 +65,15 @@ public class ViewController {
         itemService.patchItem(item, id);
         return "redirect:/item/{id}";
     }
-
     @PostMapping(path="/add")
     public String create(@ModelAttribute ItemDTO item){
-        itemService.add(item);
+        itemService.add(item, 0L); //TODO : modifier orderId
         return "redirect:/index";
-
+    }
+    @PostMapping(path="/add/{idOrder}")
+    public String createWithOrder(@ModelAttribute ItemDTO item, @PathVariable Long idOrder){
+        itemService.add(item, idOrder);
+        return "redirect:/index/"+idOrder;
     }
 
     @RequestMapping(path = "/test")

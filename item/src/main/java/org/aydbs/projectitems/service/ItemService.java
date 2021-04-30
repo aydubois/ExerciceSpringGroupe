@@ -39,11 +39,12 @@ public class ItemService {
         return ResponseEntity.status(HttpStatus.OK).body(items);
     }
 
-    public ResponseEntity<Item> add(ItemDTO item) throws ItemNotFoundException{
+    public ResponseEntity<Item> add(ItemDTO item, Long orderId) throws ItemNotFoundException{
         if(item == null){
             throw new ItemNotFoundException(null);
         }
         Item newItem = new Item(item.getName(), item.getRegionCode(), this.findRegion(item.getRegionCode()));
+        newItem.setOrderId(orderId);
         Item itemSave = itemRepository.save(newItem);
         return ResponseEntity.status(HttpStatus.OK).body(itemSave);
     }

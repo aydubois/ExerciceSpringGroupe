@@ -48,7 +48,7 @@ public class ItemController {
     @PostMapping
     public ResponseEntity<Item> add(@RequestBody ItemDTO item) {
         try {
-            return itemService.add(item);
+            return itemService.add(item, 0L); //TODO : modifier orderID
         }catch (ItemNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
