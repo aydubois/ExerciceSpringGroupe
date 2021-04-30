@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+        table{
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des sujets en base</h1>
+    <hr/>
+    <form action="#" th:action="@{/view}" th:method="POST" th:object="${newCustomer}">
+        <input id="name" type="text" placeholder="Nom" th:field="*{name}"/>
+        <input id="zipCode" type="text" placeholder="Code Postal" th:field="*{zipCode}"/>
+        <input type="submit" value="Ajouter" />
+    </form>
+    <hr/>
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Ville</th>
+            <th>Code postal</th>
+            <th></th>
+        </tr>
+        <tr th:each ="customer : ${customers}">
+            <td style="display:none;" th:utext="${customer.id}"></td>
+            <td><a th:href="@{/view/{id}(id=${customer.id})}" th:utext="${customer.name}"/></td>
+            <td th:utext="${customer.city}"></td>
+            <td th:utext="${customer.zipCode}"></td>
+            <td>
+                <form action="#" th:action="@{/view/{id}(id=${customer.id})}" th:method="delete">
+                    <input type="submit" value="supprimer"/>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
