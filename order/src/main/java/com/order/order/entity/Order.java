@@ -3,7 +3,6 @@ package com.order.order.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity(name = "orders")
@@ -40,6 +39,12 @@ public class Order {
         this.name = name;
         this.lattitude = lattitude;
         this.longitude = longitude;
+    }
+
+    public Order(String name, long idUser, long idCustomer) {
+        this.name = name;
+        this.idUser = idUser;
+        this.idCustomer = idCustomer;
     }
 
 }

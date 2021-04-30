@@ -45,7 +45,7 @@ public class ViewController {
     @PostMapping("create")
     public String create(Model model, @ModelAttribute("Order") Order newOrder) {
         orderService.addOrder(newOrder);
-        return "redirect:/index";
+        return "redirect:/index/"+newOrder.getIdUser();
     }
 
     @DeleteMapping(path = "/delete/{id}")

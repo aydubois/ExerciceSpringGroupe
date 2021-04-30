@@ -17,8 +17,8 @@ public class LoadDatabase {
 
         return args -> {
 
-            log.info("Preloading " + repository.save(new Order("Order1", "Tours")));
-            log.info("Preloading " + repository.save(new Order("Order2", "Orléans")));
+            log.info("Preloading " + repository.save(new Order("Order1", 0L,1L)));
+            log.info("Preloading " + repository.save(new Order("Order2", 1L,2L)));
             log.info("Preloading " + repository.save(new Order("Order3", "Paris")));
             log.info("Preloading " + repository.save(new Order("Order4", "Chinon")));
             log.info("Preloading " + repository.save(new Order("Order5", "Bordeaux")));
