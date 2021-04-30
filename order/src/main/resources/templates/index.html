@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Orders</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}"/>
+
 </head>
 <body>
-    <h4>ESPACE DE GESTION DES COMMANDES</h4>
-    <a href="http://localhost:8081/addOrder">Ajouter</a>
-    <br/><br/>
+    <h1>ESPACE DE GESTION DES COMMANDES</h1>
+
     <div>
+        <a href="http://localhost:8081/addOrder"><button>Ajouter</button></a>
         <table border="1">
             <tr>
                 <th>Id</th>
@@ -28,6 +30,7 @@
                         <button type="submit">SUPPRIMER</button>
                     </form>
                 </td>
+                <td><a th:href="@{/show/{id}(id=${order.id})}"/><button>Afficher</button></td>
             </tr>
         </table>
     </div>

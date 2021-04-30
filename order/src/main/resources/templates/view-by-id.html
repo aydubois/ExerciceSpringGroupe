@@ -3,21 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Commande</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}"/>
+
 </head>
 <body>
-    Id:
-    <td th:utext="${order.id}">...</td>
-    <br/><br/>
-    Name:
-    <td th:utext="${order.name}">...</td>
-    <br/><br/>
-    City:
-    <td th:utext="${order.city}">...</td>
-    <br/><br/>
-    Customer
-    <td th:utext="${order.idCustomer}">...</td>
-    <br/><br/>
-    User
-    <td th:utext="${order.idUser}">...</td>
+    <a th:href="@{/index}"><button>Retour à la liste</button></a>
+    <div class="card">
+        <p>Id : </p>
+        <p th:utext="${order.id}">...</p>
+
+        <p>Name : </p>
+        <p th:utext="${order.name}">...</p>
+
+        <p>City : </p>
+        <p th:utext="${order.city}">...</p>
+
+        <p>Customer : </p>
+        <p th:utext="${order.idCustomer}">...</p>
+        <p>
+            User : </p>
+        <p th:utext="${order.idUser}">...</p>
+    </div>
 </body>
 </html>

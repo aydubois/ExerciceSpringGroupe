@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Ajout Commande</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}"/>
+
 </head>
 <body>
-    <form th:action="@{/create}"
+    <form class="card add" th:action="@{/create}"
           th:object="${Order}" method="POST">
         <ul>
             <li>
