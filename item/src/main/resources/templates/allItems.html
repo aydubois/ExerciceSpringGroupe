@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}"/>
+</head>
+<body>
+<h1>Liste des items</h1>
+<hr/>
+<table th:if="${items != null}">
+    <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Code</th>
+        <th>Région</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr th:each ="item : ${items}">
+        <td th:utext="${item.id}"></td>
+        <td th:utext="${item.name}"></td>
+        <td th:utext="${item.regionCode}"></td>
+        <td th:utext="${item.region}"></td>
+        <td><a th:href="@{/index/{id}(id=${item.id})}"><button>Afficher / Modifier </button></a></td>
+        <td><a th:href="@{/delete/{id}(id=${item.id})}"><button>Supprimer</button></a></td>
+    </tr>
+</table>
+
+<h2>Ajouter un nouvel item : </h2>
+<form class="card add" action="#" th:action="@{/add}" th:method="post" th:object="${item}">
+    <input id="name" type="text" placeholder="Nom de l'item" th:field="*{name}"/>
+    <input id="regionCode" type="text" list="regionCodeList" placeholder="Code régional" th:field="*{regionCode}"/>
+    <input type="submit" value="Ajouter"/>
+    <datalist id="regionCodeList" >
+        <option th:each="region : ${regions}" th:value="${region.code}" th:text="${region.nom}"></option>
+    </datalist>
+</form>
+</body>
+</html>
