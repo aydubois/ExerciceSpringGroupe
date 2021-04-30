@@ -15,6 +15,8 @@ import java.util.List;
 @Service
 public class OrderService {
     private List<Order> orders = new ArrayList<>();
+    private List<Long> idItems = new ArrayList<>();
+    
     @Autowired
     private RestTemplate restTemplate;
 

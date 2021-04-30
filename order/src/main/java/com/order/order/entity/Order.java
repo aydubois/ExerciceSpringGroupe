@@ -6,9 +6,9 @@ public class Order {
     private String city;
     private int lattitude = 9999;
     private int longitude = 9999;
+    private Long idCustomer;
 
     public Order() {}
-
     public Order(String name) {
         this.name = name;
     }
@@ -62,5 +62,13 @@ public class Order {
 
     public void setLongitude(int longitude) {
         this.longitude = longitude;
+    }
+
+    public Long getIdCustomer() {
+        return idCustomer;
+    }
+
+    public void setIdCustomer(Long idCustomer) {
+        this.idCustomer = idCustomer;
     }
 }
