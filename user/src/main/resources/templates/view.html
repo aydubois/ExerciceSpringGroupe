@@ -1,0 +1,61 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<h1>Liste des users</h1>
+<hr/>
+<form>
+    <input id="name" type="text" placeholder="Nom"/>
+    <input id="zipCode" type="text" placeholder="Code Postal"/>
+    <input id="authorName" type="text" placeholder="Nom du user"/>
+    <input type="button" value="Ajouter" onclick="sendUserAndRefresh()"/>
+</form>
+<hr/>
+<table th:if="${!users.isEmpty()}">
+    <tr>
+        <th>Nom</th>
+        <th>Ville</th>
+        <th>Code postal</th>
+        <th></th>
+    </tr>
+    <tr th:each ="sujet : ${users}">
+        <td style="display:none;" th:utext="${user.id}"></td>
+        <td th:utext="${user.name}"></td>
+        <td th:utext="${user.city}"></td>
+        <td th:utext="${user.zipCode}"></td>
+        <td><button class="color:red;" th:onclick="deleteSujetAndRefresh([[${user.id}]])">X</button></td>
+    </tr>
+</table>
+<script>
+    function sendUSerAndRefresh() {
+        fetch("/user", {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: document.getElementById("name").value,
+                zipCode: document.getElementById("zipCode").value,
+                author: {name:document.getElementById("userName").value}
+            })
+        }).then(() => document.location.reload()).catch((error) => console.log(error))
+    }
+
+    function deleteUserAndRefresh(id) {
+        fetch("/user/" + id, {
+            method: "DELETE",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(() => document.location.reload()).catch((error) => console.log(error))
+    }
+
+</script>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+    table{
+        border-collapse: collapse;
+    }
+</style>
+</html>
