@@ -22,6 +22,7 @@ public class OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
+    private List<Long> idItems = new ArrayList<>();
 
     public void addOrder(Order order) {
 
@@ -115,7 +116,7 @@ public class OrderService {
            return null;
         }
     }
-
+    
     public List<Order> findOrdersByUserId(Long userId){
         return orderRepository.findByUserId(userId);
     }
