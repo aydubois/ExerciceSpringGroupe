@@ -116,7 +116,14 @@ public class OrderService {
            return null;
         }
     }
-    
+
+    public Item[] findItemsByOrderId(Long orderId) throws NotFoundException{
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Item[]> response
+                = restTemplate.getForEntity("http://localhost:8083/order/"+orderId, Item[].class);
+        return response.getBody();
+    }
+
     public List<Order> findOrdersByUserId(Long userId){
         return orderRepository.findByUserId(userId);
     }
