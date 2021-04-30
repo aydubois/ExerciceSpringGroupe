@@ -1,7 +1,9 @@
 package org.abr.audreybr.controller;
 
 import org.abr.audreybr.dto.UserDTO;
+import org.abr.audreybr.entity.User;
 import org.abr.audreybr.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,32 +20,28 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserDTO> getAll() {
-
+    public List<User> getAll() {
         return userService.getAll();
     }
 
     @GetMapping("/{id}")
-    public UserDTO get(@PathVariable("id") String id) {
-
-        return userService.get(id);
+    public User get(@PathVariable("id") long id) {
+        return userService.getUser(id);
     }
 
     @PostMapping
-    public UserDTO create(@RequestBody UserDTO userDTO) {
-
-        return userService.create(userDTO);
+    public User create(@RequestBody User user) {
+        return userService.create(user);
     }
 
-    @PutMapping
-    public UserDTO update(@RequestBody UserDTO userDTO)  {
-
-        return userService.update(userDTO);
+    @PutMapping(path = "{id}")
+    public User update(@PathVariable long id, @RequestBody User user)  {
+        return userService.editUser(id,user);
     }
 
     @DeleteMapping("/{id}")
-    public long delete(@PathVariable("id") String id)  {
-        return userService.delete(id);
+    public ResponseEntity<String> delete(@PathVariable("id") long id)  {
+        return userService.deleteUser(id);
     }
 
 

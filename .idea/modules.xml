@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ExerciceSpringGroupe.iml" filepath="$PROJECT_DIR$/.idea/ExerciceSpringGroupe.iml" />
       <module fileurl="file://$PROJECT_DIR$/customer/alik.iml" filepath="$PROJECT_DIR$/customer/alik.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user/audreybr.iml" filepath="$PROJECT_DIR$/user/audreybr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/order/order.iml" filepath="$PROJECT_DIR$/order/order.iml" />
       <module fileurl="file://$PROJECT_DIR$/item/projectitems.iml" filepath="$PROJECT_DIR$/item/projectitems.iml" />
     </modules>
   </component>
