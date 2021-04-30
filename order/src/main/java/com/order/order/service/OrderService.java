@@ -3,6 +3,7 @@ package com.order.order.service;
 import com.order.order.NotFoundException;
 import com.order.order.dao.OrderRepository;
 import com.order.order.entity.City;
+import com.order.order.entity.Item;
 import com.order.order.entity.Order;
 import com.order.order.entity.Search;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,16 +118,5 @@ public class OrderService {
 
     public List<Order> findOrdersByUserId(Long userId){
         return orderRepository.findByUserId(userId);
-    }
-
-    public Object getItems(int id) {
-//        ResponseEntity<Item[]> response
-//                = restTemplate.getForEntity("http://localhost:8083/", Item[].class);
-//        if(response.getBody() != null && response.getBody().length > 0) {
-//            return response.getBody();
-//        } else {
-//            throw new NotFoundException("No items for this Order");
-//        }
-        return null;
     }
 }
