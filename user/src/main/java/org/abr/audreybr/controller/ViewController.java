@@ -45,6 +45,11 @@ public class ViewController {
         redirectView.setUrl("http://localhost:8081/index/"+authUser.getId());
         return redirectView;
     }
+    @GetMapping(path = "login")
+    public String loginView(@ModelAttribute User user,Model model) {
+        model.addAttribute("newUser", new User());
+        return "login";
+    }
 
     @PutMapping(path = "{id}")
     public String edit(@PathVariable long id, @ModelAttribute User user) {
