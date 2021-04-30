@@ -22,8 +22,10 @@
         <td th:utext="${item.name}"></td>
         <td th:utext="${item.regionCode}"></td>
         <td th:utext="${item.region}"></td>
-        <td><a th:href="@{/item/{id}(id=${item.id})}"><button>Afficher / Modifier </button></a></td>
-        <td><a th:href="@{/delete/{id}(id=${item.id})}"><button>Supprimer</button></a></td>
+        <td  th:if="idOrder" ><a th:href="@{/item/{id}/{idOrder}(id=${item.id}, idOrder=${idOrder})}"><button>Afficher / Modifier </button></a></td>
+        <td th:if="!idOrder" ><a th:href="@{/item/{id}(id=${item.id})}"><button>Afficher / Modifier </button></a></td>
+        <td th:if="!idOrder"><a th:href="@{/delete/{id}(id=${item.id})}"><button>Supprimer</button></a></td>
+        <td  th:if="idOrder" ><a th:href="@{/delete/{id}/{idOrder}(id=${item.id}, idOrder=${idOrder})}"><button>Supprimer</button></a></td>
     </tr>
 </table>
 

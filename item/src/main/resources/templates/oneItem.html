@@ -6,7 +6,8 @@
     <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}"/>
 </head>
 <body>
-<a th:href="@{/index}"><button>Retour à la liste des items</button></a>
+<a th:if="!idOrder"th:href="@{/index}"><button>Retour à la liste des items</button></a>
+<a th:if="idOrder" th:href="@{/index/{idOrder}(idOrder=${idOrder})}"><button>Retour à la liste des items</button></a>
 <h1>Item</h1>
 <div class="card" th:if="${item != null}">
     <p>Id : </p> <p th:utext="${item.id}"></p>
